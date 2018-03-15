@@ -29,7 +29,7 @@ class Queue<T> {
 }
 
 class AnimationController {
-	State: AnimationState = AnimationState.Ready
+	State: AnimationState = AnimationState.Stopped
 	Queue: Queue<() => void> = new Queue()
 
 	Done() {
@@ -70,8 +70,10 @@ export class HomePage {
   }
 
   StartAnimating() {
-  	this.AnimationController.State = AnimationState.Ready
-  	this.Tick()
+  	if (this.AnimationController.State == AnimationState.Stopped){
+  		this.AnimationController.State = AnimationState.Ready
+  		this.Tick()
+  	}
   }
 
   Tick(){
