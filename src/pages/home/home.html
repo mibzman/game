@@ -21,19 +21,45 @@
   		<ion-col>
   			Smart
   		</ion-col>
-  		<ion-col>
+  		<!-- <ion-col>
   			Active
-  		</ion-col>
+  		</ion-col> -->
   	</ion-row>
+      <ion-row>
+        <ion-col no-padding>
+          <bar [progress]="20"></bar>
+        </ion-col>
+        <ion-col no-padding>
+          <bar [progress]="40"></bar>
+        </ion-col>
+        <ion-col no-padding>
+          <bar [progress]="60"></bar>
+        </ion-col>
+        <ion-col no-padding>
+          <bar [progress]="80"></bar>
+        </ion-col>
+        <!-- <ion-col no-padding>
+          <bar [progress]="100"></bar>
+        </ion-col> -->
+      </ion-row>
   </ion-grid>
-
-  <button ion-button (click)="StartAnimating()">Start Animating</button>
-  <button ion-button (click)="AnimationController.State = 2">Stop Animating</button>
-
-  <button ion-button (click)="BeHappy()">Be Happy</button>
+  
 
 </ion-content>
 <ion-footer>
 	<img width={{MonsterZoneWidth}} height={{MonsterZoneHeight}} [src]="MonsterZoneSrc" >
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col no-padding>
+        <button ion-button block outline (click)="BeHappy()">Feed</button>
+      </ion-col>
+      <ion-col no-padding>
+        <button ion-button block outline (click)="BeHappy()">Read</button>
+      </ion-col>
+      <ion-col no-padding>
+        <button ion-button block outline (click)="BeHappy()">Clean</button>
+      </ion-col>
+      </ion-row>
+  </ion-grid>
 </ion-footer>
 

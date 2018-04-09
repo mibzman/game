@@ -1,44 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 
+import {AnimationState, AnimationController} from './Animations';
+
 class Monster {
 	Idle: string[]
 	Happy: string[]
 	Eating: string[]
-}
-
-enum AnimationState {
-	Ready = 1,
-	Stopped,
-	Animating,
-}
-
-class Queue<T> {
-  private _store: T[] = [];
-
-  Length() {
-  	return this._store.length
-  }
-
-  Push(val: T) {
-    this._store.push(val);
-  }
-  Pop(): T | undefined {
-    return this._store.shift();
-  }
-}
-
-class AnimationController {
-	State: AnimationState = AnimationState.Stopped
-	Queue: Queue<() => void> = new Queue()
-
-	Done() {
-		if (this.State == AnimationState.Stopped){
-			return
-		}
-
-		this.State = AnimationState.Ready
-	}
 }
 
 @Component({
@@ -70,26 +38,22 @@ export class HomePage {
   }
 
   StartAnimating() {
-  	if (this.AnimationController.State == AnimationState.Stopped){
-  		this.AnimationController.State = AnimationState.Ready
+  	if (this.AnimationController.Start()){
   		this.Tick()
   	}
   }
 
   Tick(){
-  	console.log(this.AnimationController.State)
-  		if (this.AnimationController.State == AnimationState.Ready) {
-  			this.AnimationController.State = AnimationState.Animating
-
-  			
-  			if (this.AnimationController.Queue.Length() == 0){
-  				this.Animate(this.Monster.Idle)
-  			} else {
-  				this.AnimationController.Queue.Pop().call(this)
-  			}
-  		}
+		if (this.AnimationController.State == AnimationState.Ready) {
+			this.AnimationController.State = AnimationState.Animating
+			
+			if (this.AnimationController.Queue.Length() == 0){
+				this.Animate(this.Monster.Idle)
+			} else {
+				this.AnimationController.Queue.Pop().call(this)
+			}
+		}
   		
-  	// }
   	setTimeout(() => {
   		this.Tick()
   	}, 75)
