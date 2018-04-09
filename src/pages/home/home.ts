@@ -28,6 +28,13 @@ class Monster {
       "assets/imgs/characters/1/eating2.png"
     ];
 
+    this.Looking = [
+      "assets/imgs/characters/1/neutral.png",
+      "assets/imgs/characters/1/neutral.png",
+      "assets/imgs/characters/1/neutral.png",
+      "assets/imgs/characters/1/neutral.png"
+    ];
+
     this.Scores = {
       Hungry: 50,
       Happy: 50,
@@ -39,6 +46,7 @@ class Monster {
   Idle: string[];
   Happy: string[];
   Eating: string[];
+  Looking: string[]
 
   Scores: {
     Hungry: number;
@@ -134,6 +142,27 @@ export class HomePage {
   Feed() {
     this.AnimationController.Queue.Push(() => {
       this.Animate(this.Monster.Eating);
+      setTimeout(() => {
+        this.Monster.Scores.Hungry += 40
+      }, 1000);
+    });
+  }
+
+  Read() {
+    this.AnimationController.Queue.Push(() => {
+      this.Animate(this.Monster.Happy);
+      setTimeout(() => {
+        this.Monster.Scores.Smart += 40
+      }, 1000);
+    });
+  }
+
+  Clean() {
+    this.AnimationController.Queue.Push(() => {
+      this.Animate(this.Monster.Happy);
+      setTimeout(() => {
+        this.Monster.Scores.Clean += 40
+      }, 1000);
     });
   }
 }

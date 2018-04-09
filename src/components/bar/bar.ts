@@ -20,6 +20,10 @@ export class BarComponent {
 			this.color = "#488aff";
 		}
 
+		if (this.progress > 75) {
+			this.color = "#32db64";
+		}
+
 		if (this.progress < 0) {
 			this.progress = 0;
 		}
