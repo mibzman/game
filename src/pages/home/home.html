@@ -27,16 +27,16 @@
   	</ion-row>
       <ion-row>
         <ion-col no-padding>
-          <bar [progress]="20"></bar>
+          <bar [progress]=Monster.Scores.Hungry></bar>
         </ion-col>
         <ion-col no-padding>
-          <bar [progress]="40"></bar>
+          <bar [progress]=Monster.Scores.Happy></bar>
         </ion-col>
         <ion-col no-padding>
-          <bar [progress]="60"></bar>
+          <bar [progress]=Monster.Scores.Clean></bar>
         </ion-col>
         <ion-col no-padding>
-          <bar [progress]="80"></bar>
+          <bar [progress]=Monster.Scores.Smart></bar>
         </ion-col>
         <!-- <ion-col no-padding>
           <bar [progress]="100"></bar>
@@ -51,13 +51,13 @@
   <ion-grid no-padding>
     <ion-row>
       <ion-col no-padding>
-        <button ion-button block outline (click)="BeHappy()">Feed</button>
+        <button ion-button block outline (click)="Feed()">Feed</button>
       </ion-col>
       <ion-col no-padding>
-        <button ion-button block outline (click)="BeHappy()">Read</button>
+        <button ion-button block outline (click)="Read()">Read</button>
       </ion-col>
       <ion-col no-padding>
-        <button ion-button block outline (click)="BeHappy()">Clean</button>
+        <button ion-button block outline (click)="Clean()">Clean</button>
       </ion-col>
       </ion-row>
   </ion-grid>
