@@ -1,39 +1,44 @@
 export class Monster {
   constructor() {
     this.Idle = [
-      "assets/imgs/characters/1/neutral.png",
-      "assets/imgs/characters/1/idle1.png",
-      "assets/imgs/characters/1/neutral.png",
-      "assets/imgs/characters/1/idle2.png",
-      "assets/imgs/characters/1/neutral.png"
+      "assets/imgs/characters/2/Idle/1.png",
+      "assets/imgs/characters/2/Idle/2.png",
+      "assets/imgs/characters/2/Idle/3.png",
+      // "assets/imgs/characters/2/Idle/2.png",
+      "assets/imgs/characters/2/Idle/1.png",
+      "assets/imgs/characters/2/Idle/1.png",
+      "assets/imgs/characters/2/Idle/1.png",
+      "assets/imgs/characters/2/Idle/1.png",
     ];
     this.Happy = [
-      "assets/imgs/characters/1/happy1.png",
-      "assets/imgs/characters/1/happy2.png",
-      "assets/imgs/characters/1/happy3.png",
-      "assets/imgs/characters/1/happy2.png",
-      "assets/imgs/characters/1/happy1.png",
-      "assets/imgs/characters/1/happy1.png",
-      "assets/imgs/characters/1/happy1.png",
-      "assets/imgs/characters/1/happy2.png",
-      "assets/imgs/characters/1/happy3.png",
-      "assets/imgs/characters/1/happy2.png",
-      "assets/imgs/characters/1/happy1.png"
+      "assets/imgs/characters/2/Dance/1.png",
+      "assets/imgs/characters/2/Dance/2.png",
+      "assets/imgs/characters/2/Dance/3.png",
+      // "assets/imgs/characters/2/Dance/2.png",
+      // "assets/imgs/characters/2/Dance/1.png",
+      // "assets/imgs/characters/2/Dance/1.png",
+      // "assets/imgs/characters/2/Dance/1.png",
+      // "assets/imgs/characters/2/Dance/2.png",
+      // "assets/imgs/characters/2/Dance/3.png",
+      // "assets/imgs/characters/2/Dance/2.png",
+      // "assets/imgs/characters/2/Dance/1.png"
     ];
     this.Eating = [
-      "assets/imgs/characters/1/eating1.png",
-      "assets/imgs/characters/1/eating2.png",
-      "assets/imgs/characters/1/eating3.png",
-      "assets/imgs/characters/1/eating2.png",
-      "assets/imgs/characters/1/eating3.png",
-      "assets/imgs/characters/1/eating2.png"
+      "assets/imgs/characters/2/Eating/1.png",
+      "assets/imgs/characters/2/Eating/2.png",
+      "assets/imgs/characters/2/Eating/1.png",
+      "assets/imgs/characters/2/Eating/2.png",
+      "assets/imgs/characters/2/Eating/1.png",
+      "assets/imgs/characters/2/Eating/2.png",
+      "assets/imgs/characters/2/Eating/1.png",
+      "assets/imgs/characters/2/Eating/2.png",
     ];
 
     this.Looking = [
-      "assets/imgs/characters/1/neutral.png",
-      "assets/imgs/characters/1/neutral.png",
-      "assets/imgs/characters/1/neutral.png",
-      "assets/imgs/characters/1/neutral.png"
+      "assets/imgs/characters/2/neutral.png",
+      "assets/imgs/characters/2/neutral.png",
+      "assets/imgs/characters/2/neutral.png",
+      "assets/imgs/characters/2/neutral.png"
     ];
 
     this.Scores = {
@@ -56,7 +61,7 @@ export class Monster {
     Smart: number;
   };
 
-  TryDegradeScores() {
+  DegradeScores() {
 
     this.Scores.Hungry -= 1;
     this.Scores.Clean -= 1;

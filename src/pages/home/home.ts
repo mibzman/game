@@ -68,7 +68,7 @@ export class HomePage {
     }
 
     if (this.TickCounter >= 14 * 3){
-      this.Monster.TryDegradeScores();
+      this.Monster.DegradeScores();
         this.TickCounter = 0  
     }
     
