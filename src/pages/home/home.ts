@@ -28,7 +28,10 @@ export class HomePage {
     "assets/imgs/assets/apple/6.png",
     "assets/imgs/assets/apple/7.png",
     "assets/imgs/assets/apple/8.png",
-    "",
+  ];
+
+  Book = [
+    "assets/imgs/assets/book/1.gif",
   ];
 
   Monster: Monster = new Monster();
@@ -75,15 +78,18 @@ export class HomePage {
     }, 75);
   }
 
-  Animate(zone:Zone, arr: string[], idx: number = 0) {
+  Animate(zone:Zone, arr: string[], emptyEnd: boolean = false, idx: number = 0) {
     if (arr.length == idx) {
+      if (emptyEnd) {
+        zone.Src = "";
+      }
       this.AnimationController.Done();
       return;
     }
     zone.Src = arr[idx];
     setTimeout(() => {
-      this.Animate(zone, arr, idx + 1);
-    }, 1000 / arr.length);
+      this.Animate(zone, arr, emptyEnd, idx + 1);
+    }, 1500 / arr.length);
   }
 
   HappyMonster() {
@@ -93,7 +99,7 @@ export class HomePage {
   Feed() {
     this.AnimationController.Queue.Push(() => {
       this.Animate(this.MonsterZone, this.Monster.Eating);
-      this.Animate(this.ItemZone, this.Apple);
+      this.Animate(this.ItemZone, this.Apple, true);
       setTimeout(() => {
         this.Monster.Scores.Hungry += 40
       }, 1000);
@@ -103,6 +109,7 @@ export class HomePage {
   Read() {
     this.AnimationController.Queue.Push(() => {
       this.Animate(this.MonsterZone, this.Monster.Happy);
+      this.Animate(this.ItemZone, this.Book, true);
       setTimeout(() => {
         this.Monster.Scores.Smart += 40
       }, 1000);

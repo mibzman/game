@@ -12,6 +12,12 @@ export class Monster {
       "assets/imgs/characters/1/happy2.png",
       "assets/imgs/characters/1/happy3.png",
       "assets/imgs/characters/1/happy2.png",
+      "assets/imgs/characters/1/happy1.png",
+      "assets/imgs/characters/1/happy1.png",
+      "assets/imgs/characters/1/happy1.png",
+      "assets/imgs/characters/1/happy2.png",
+      "assets/imgs/characters/1/happy3.png",
+      "assets/imgs/characters/1/happy2.png",
       "assets/imgs/characters/1/happy1.png"
     ];
     this.Eating = [
