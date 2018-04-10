@@ -19,6 +19,18 @@ export class HomePage {
   MonsterZone: Zone = new Zone();
   ItemZone: Zone = new Zone();
 
+  Apple = [
+    "assets/imgs/assets/apple/1.png",
+    "assets/imgs/assets/apple/2.png",
+    "assets/imgs/assets/apple/3.png",
+    "assets/imgs/assets/apple/4.png",
+    "assets/imgs/assets/apple/5.png",
+    "assets/imgs/assets/apple/6.png",
+    "assets/imgs/assets/apple/7.png",
+    "assets/imgs/assets/apple/8.png",
+    "",
+  ];
+
   Monster: Monster = new Monster();
 
   AnimationController: AnimationController = new AnimationController();
@@ -30,6 +42,8 @@ export class HomePage {
       this.MonsterZone.Width = Plat.width();
       this.MonsterZone.Height = Plat.height() * 0.57;
     });
+
+    this.ItemZone.Src = "";
     this.StartAnimating();
   }
 
@@ -79,6 +93,7 @@ export class HomePage {
   Feed() {
     this.AnimationController.Queue.Push(() => {
       this.Animate(this.MonsterZone, this.Monster.Eating);
+      this.Animate(this.ItemZone, this.Apple);
       setTimeout(() => {
         this.Monster.Scores.Hungry += 40
       }, 1000);
