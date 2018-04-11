@@ -88,14 +88,13 @@ export class Monster {
   Happiness: number = 40;
 
   DegradeScores() {
-    this.Hungry.Score -= 1;
-    // this.Clean.Score -= 1;
-    this.Smart.Score -= 1;
+    var scores = [
+    this.Hungry.Score -= 1,
+    this.Active.Score -= 1,
+    this.Smart.Score -= 1,
+    ];
 
-    this.Happiness =
-      (this.Hungry.Score +
-        this.Active.Score +
-        this.Smart.Score) /
-      3;
+    this.Happiness = scores.reduce((total, num) => {return total + num}) / scores.length
+      
   }
 }

@@ -58,7 +58,7 @@ export class HomePage {
       this.AnimationController.State = AnimationState.Animating;
 
       if (this.AnimationController.Queue.Length() == 0) {
-        if (this.Monster.Happiness < 30) {
+        if (this.Monster.Happiness < 10) {
           this.AnimationController.Queue.Push(() => {
             this.Animate(this.MonsterZone, this.Monster.Sick);
           });
