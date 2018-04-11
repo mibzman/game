@@ -92,10 +92,6 @@ export class HomePage {
     }, 1500 / arr.length);
   }
 
-  HappyMonster() {
-    this.Animate(this.MonsterZone, this.Monster.Happy);
-  }
-
   Feed() {
     this.AnimationController.Queue.Push(() => {
       this.Animate(this.MonsterZone, this.Monster.Hungry.Animation);
@@ -112,15 +108,6 @@ export class HomePage {
       this.Animate(this.ItemZone, this.Book, true);
       setTimeout(() => {
         this.Monster.Smart.Score += 40
-      }, 1000);
-    });
-  }
-
-  Clean() {
-    this.AnimationController.Queue.Push(() => {
-      this.Animate(this.MonsterZone, this.Monster.Happy);
-      setTimeout(() => {
-        this.Monster.Scores.Clean += 40
       }, 1000);
     });
   }

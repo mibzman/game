@@ -36,12 +36,7 @@ export class Monster {
       "assets/imgs/characters/2/Eating/2.png",
     ]);
 
-    this.Scores = {
-      Hungry: 50,
-      Happy: 50,
-      Clean: 50,
-      Smart: 50
-    };
+    
   }
 
   Idle: string[];
@@ -49,18 +44,17 @@ export class Monster {
   Smart: Action;
   Hungry: Action;
 
-  Scores: {
-    Happy: number;
-    Clean: number;
-  };
+  Happiness: number = 50;
 
   DegradeScores() {
 
-    this.Scores.Hungry -= 1;
-    this.Scores.Clean -= 1;
-    this.Scores.Smart -= 1;
+    this.Hungry.Score -= 1;
+    // this.Clean.Score -= 1;
+    this.Smart.Score -= 1;
 
-    this.Scores.Happy =
-      (this.Scores.Hungry + this.Scores.Clean + this.Scores.Smart) / 3;
+    this.Happiness =
+      (this.Hungry.Score + 
+        // this.Clean.Score + 
+        this.Smart.Score) / 2;
   }
 }
