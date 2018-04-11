@@ -111,4 +111,14 @@ export class HomePage {
       }, 1000);
     });
   }
+
+  Jump() {
+    this.AnimationController.Queue.Push(() => {
+      this.Animate(this.MonsterZone, this.Monster.Active.Animation);
+      // this.Animate(this.ItemZone, this.Book, true);
+      setTimeout(() => {
+        this.Monster.Active.Score += 40
+      }, 1000);
+    });
+  }
 }

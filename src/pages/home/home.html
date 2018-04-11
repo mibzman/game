@@ -21,9 +21,9 @@
   		<ion-col>
   			Smart
   		</ion-col>
-  		<!-- <ion-col>
+  		<ion-col>
   			Active
-  		</ion-col> -->
+  		</ion-col>
   	</ion-row>
       <ion-row>
         <ion-col no-padding>
@@ -38,9 +38,9 @@
         <ion-col no-padding>
           <bar [progress]=Monster.Smart.Score></bar>
         </ion-col>
-        <!-- <ion-col no-padding>
-          <bar [progress]="100"></bar>
-        </ion-col> -->
+        <ion-col no-padding>
+          <bar [progress]=Monster.Active.Score></bar>
+        </ion-col>
       </ion-row>
   </ion-grid>
   
@@ -48,7 +48,7 @@
 
 </ion-content>
 <ion-footer>
-	<img width={{MonsterZone.Width}} height={{MonsterZone.Height}} [src]="MonsterZone.Src" >
+	<img width={{MonsterZone.Width}} height={{MonsterZone.Height}} [src]="MonsterZone.Src" (click)="Jump()">
   <ion-grid no-padding>
     <ion-row>
       <ion-col no-padding>
