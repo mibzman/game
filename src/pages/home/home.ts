@@ -98,6 +98,11 @@ export class HomePage {
         this.Animate(this.MonsterZone, this.Monster.Hungry.Animation);
         this.Animate(this.ItemZone, this.Apple, true);
       });
+    } 
+    else {
+      this.AnimationController.Queue.Push(() => {
+        this.Animate(this.MonsterZone, this.Monster.Bad);
+      });
     }
   }
 
@@ -108,12 +113,22 @@ export class HomePage {
         this.Animate(this.ItemZone, this.Book, true);
       });
     }
+    else {
+      this.AnimationController.Queue.Push(() => {
+        this.Animate(this.MonsterZone, this.Monster.Bad);
+      });
+    }
   }
 
   Jump() {
     if (this.Monster.Active.TryDo()) {
       this.AnimationController.Queue.Push(() => {
         this.Animate(this.MonsterZone, this.Monster.Active.Animation);
+      });
+    }
+    else {
+      this.AnimationController.Queue.Push(() => {
+        this.Animate(this.MonsterZone, this.Monster.Bad);
       });
     }
   }

@@ -69,14 +69,17 @@ export class Monster {
     //   "assets/imgs/characters/2/Sick/2.png",
     //   // "assets/imgs/characters/2/Sick/3.png"
     // ];
-    // this.Bad = [
-    //   "assets/imgs/characters/2/UhOh/1.png",
-    //   "assets/imgs/characters/2/UhOh/2.png",
-    //   "assets/imgs/characters/2/UhOh/3.png"
-    // ];
+    
+    this.Bad = [
+      "assets/imgs/characters/2/UhOh/1.png",
+      "assets/imgs/characters/2/UhOh/2.png",
+      "assets/imgs/characters/2/UhOh/3.png",
+      "assets/imgs/characters/2/UhOh/2.png",
+    ];
   }
 
   Idle: string[];
+  Bad: string[];
 
   Smart: Action;
   Hungry: Action;
