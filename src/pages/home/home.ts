@@ -93,32 +93,28 @@ export class HomePage {
   }
 
   Feed() {
-    this.AnimationController.Queue.Push(() => {
-      this.Animate(this.MonsterZone, this.Monster.Hungry.Animation);
-      this.Animate(this.ItemZone, this.Apple, true);
-      setTimeout(() => {
-        this.Monster.Hungry.Score += 40
-      }, 1000);
-    });
+    if (this.Monster.Hungry.TryDo()) {
+      this.AnimationController.Queue.Push(() => {
+        this.Animate(this.MonsterZone, this.Monster.Hungry.Animation);
+        this.Animate(this.ItemZone, this.Apple, true);
+      });
+    }
   }
 
   Read() {
-    this.AnimationController.Queue.Push(() => {
-      this.Animate(this.MonsterZone, this.Monster.Smart.Animation);
-      this.Animate(this.ItemZone, this.Book, true);
-      setTimeout(() => {
-        this.Monster.Smart.Score += 40
-      }, 1000);
-    });
+    if (this.Monster.Smart.TryDo()) {
+      this.AnimationController.Queue.Push(() => {
+        this.Animate(this.MonsterZone, this.Monster.Smart.Animation);
+        this.Animate(this.ItemZone, this.Book, true);
+      });
+    }
   }
 
   Jump() {
-    this.AnimationController.Queue.Push(() => {
-      this.Animate(this.MonsterZone, this.Monster.Active.Animation);
-      // this.Animate(this.ItemZone, this.Book, true);
-      setTimeout(() => {
-        this.Monster.Active.Score += 40
-      }, 1000);
-    });
+    if (this.Monster.Active.TryDo()) {
+      this.AnimationController.Queue.Push(() => {
+        this.Animate(this.MonsterZone, this.Monster.Active.Animation);
+      });
+    }
   }
 }

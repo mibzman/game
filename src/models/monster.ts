@@ -4,7 +4,30 @@ export class Action {
   }
 
   Animation: string[];
-  Score: number = 50;
+  Score: number = 40;
+  RecentCount: number = 0;
+  BoredTimeout: number;
+
+  TryDo(): boolean {
+    if (this.BoredTimeout > Date.now()) {
+      return false;
+    }
+
+    if (this.RecentCount >= 3) {
+      this.RecentCount = 0;
+      this.BoredTimeout = new Date(Date.now() + 5 * 60000).getTime();
+      return false;
+    }
+
+    this.RecentCount++;
+
+    if (this.Score < 100) {
+      setTimeout(() => {
+        this.Score += 20;
+      }, 2000);
+    }
+    return true;
+  }
 }
 
 export class Monster {
@@ -13,7 +36,6 @@ export class Monster {
       "assets/imgs/characters/2/Idle/1.png",
       "assets/imgs/characters/2/Idle/2.png",
       "assets/imgs/characters/2/Idle/3.png",
-      // "assets/imgs/characters/2/Idle/2.png",
       "assets/imgs/characters/2/Idle/1.png",
       "assets/imgs/characters/2/Idle/1.png",
       "assets/imgs/characters/2/Idle/1.png",
@@ -60,7 +82,7 @@ export class Monster {
   Hungry: Action;
   Active: Action;
 
-  Happiness: number = 50;
+  Happiness: number = 40;
 
   DegradeScores() {
     this.Hungry.Score -= 1;
@@ -69,8 +91,8 @@ export class Monster {
 
     this.Happiness =
       (this.Hungry.Score +
-        // this.Clean.Score +
+        this.Active.Score +
         this.Smart.Score) /
-      2;
+      3;
   }
 }
