@@ -108,7 +108,7 @@ export class HomePage {
 
   Read() {
     this.AnimationController.Queue.Push(() => {
-      this.Animate(this.MonsterZone, this.Monster.Happy);
+      this.Animate(this.MonsterZone, this.Monster.Smart);
       this.Animate(this.ItemZone, this.Book, true);
       setTimeout(() => {
         this.Monster.Scores.Smart += 40

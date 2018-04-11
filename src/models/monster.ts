@@ -10,7 +10,7 @@ export class Monster {
       "assets/imgs/characters/2/Idle/1.png",
       "assets/imgs/characters/2/Idle/1.png",
     ];
-    this.Happy = [
+    this.Smart = [
       "assets/imgs/characters/2/Dance/1.png",
       "assets/imgs/characters/2/Dance/2.png",
       "assets/imgs/characters/2/Dance/3.png",
@@ -50,7 +50,7 @@ export class Monster {
   }
 
   Idle: string[];
-  Happy: string[];
+  Smart: string[];
   Eating: string[];
   Looking: string[]
 
