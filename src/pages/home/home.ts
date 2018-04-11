@@ -5,17 +5,16 @@ import { AnimationState, AnimationController } from "./Animations";
 import { Monster } from "../../models/monster";
 
 class Zone {
-    Height: number;
-    Width: number;
-    Src: string;
-  }
+  Height: number;
+  Width: number;
+  Src: string;
+}
 
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
 })
 export class HomePage {
-
   MonsterZone: Zone = new Zone();
   ItemZone: Zone = new Zone();
 
@@ -27,12 +26,10 @@ export class HomePage {
     "assets/imgs/assets/apple/5.png",
     "assets/imgs/assets/apple/6.png",
     "assets/imgs/assets/apple/7.png",
-    "assets/imgs/assets/apple/8.png",
+    "assets/imgs/assets/apple/8.png"
   ];
 
-  Book = [
-    "assets/imgs/assets/book/1.gif",
-  ];
+  Book = ["assets/imgs/assets/book/1.gif"];
 
   Monster: Monster = new Monster();
 
@@ -61,24 +58,37 @@ export class HomePage {
       this.AnimationController.State = AnimationState.Animating;
 
       if (this.AnimationController.Queue.Length() == 0) {
-        this.Animate(this.MonsterZone, this.Monster.Idle);
-      } else {
-        this.AnimationController.Queue.Pop().call(this);
+        if (this.Monster.Happiness < 30) {
+          this.AnimationController.Queue.Push(() => {
+            this.Animate(this.MonsterZone, this.Monster.Sick);
+          });
+        } else {
+          this.AnimationController.Queue.Push(() => {
+            this.Animate(this.MonsterZone, this.Monster.Idle);
+          });
+        }
       }
+      
+      this.AnimationController.Queue.Pop().call(this);
     }
 
-    if (this.TickCounter >= 14 * 3){
+    if (this.TickCounter >= 14) {
       this.Monster.DegradeScores();
-        this.TickCounter = 0  
+      this.TickCounter = 0;
     }
-    
-    this.TickCounter++
+
+    this.TickCounter++;
     setTimeout(() => {
       this.Tick();
     }, 75);
   }
 
-  Animate(zone:Zone, arr: string[], emptyEnd: boolean = false, idx: number = 0) {
+  Animate(
+    zone: Zone,
+    arr: string[],
+    emptyEnd: boolean = false,
+    idx: number = 0
+  ) {
     if (arr.length == idx) {
       if (emptyEnd) {
         zone.Src = "";
@@ -98,8 +108,7 @@ export class HomePage {
         this.Animate(this.MonsterZone, this.Monster.Hungry.Animation);
         this.Animate(this.ItemZone, this.Apple, true);
       });
-    } 
-    else {
+    } else {
       this.AnimationController.Queue.Push(() => {
         this.Animate(this.MonsterZone, this.Monster.Bad);
       });
@@ -112,8 +121,7 @@ export class HomePage {
         this.Animate(this.MonsterZone, this.Monster.Smart.Animation);
         this.Animate(this.ItemZone, this.Book, true);
       });
-    }
-    else {
+    } else {
       this.AnimationController.Queue.Push(() => {
         this.Animate(this.MonsterZone, this.Monster.Bad);
       });
@@ -125,8 +133,7 @@ export class HomePage {
       this.AnimationController.Queue.Push(() => {
         this.Animate(this.MonsterZone, this.Monster.Active.Animation);
       });
-    }
-    else {
+    } else {
       this.AnimationController.Queue.Push(() => {
         this.Animate(this.MonsterZone, this.Monster.Bad);
       });

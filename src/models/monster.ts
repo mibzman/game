@@ -15,7 +15,7 @@ export class Action {
 
     if (this.RecentCount >= 3) {
       this.RecentCount = 0;
-      this.BoredTimeout = new Date(Date.now() + 5 * 60000).getTime();
+      this.BoredTimeout = new Date(Date.now() + 1 * 60000).getTime();
       return false;
     }
 
@@ -65,11 +65,10 @@ export class Monster {
       "assets/imgs/characters/2/FlyingAway/1.png"
     ]);
 
-    // this.Sick = [
-    //   "assets/imgs/characters/2/Sick/2.png",
-    //   // "assets/imgs/characters/2/Sick/3.png"
-    // ];
-    
+    this.Sick = [
+      "assets/imgs/characters/2/Sick/2.png",
+    ];
+
     this.Bad = [
       "assets/imgs/characters/2/UhOh/1.png",
       "assets/imgs/characters/2/UhOh/2.png",
@@ -80,6 +79,7 @@ export class Monster {
 
   Idle: string[];
   Bad: string[];
+  Sick: string[];
 
   Smart: Action;
   Hungry: Action;
