@@ -1,3 +1,12 @@
+export class Action {
+  constructor(anim: string[]){
+    this.Animation = anim
+  }
+
+  Animation: string[];
+  Score: number = 50;
+}
+
 export class Monster {
   constructor() {
     this.Idle = [
@@ -10,20 +19,13 @@ export class Monster {
       "assets/imgs/characters/2/Idle/1.png",
       "assets/imgs/characters/2/Idle/1.png",
     ];
-    this.Smart = [
+
+    this.Smart = new Action([
       "assets/imgs/characters/2/Dance/1.png",
       "assets/imgs/characters/2/Dance/2.png",
       "assets/imgs/characters/2/Dance/3.png",
-      // "assets/imgs/characters/2/Dance/2.png",
-      // "assets/imgs/characters/2/Dance/1.png",
-      // "assets/imgs/characters/2/Dance/1.png",
-      // "assets/imgs/characters/2/Dance/1.png",
-      // "assets/imgs/characters/2/Dance/2.png",
-      // "assets/imgs/characters/2/Dance/3.png",
-      // "assets/imgs/characters/2/Dance/2.png",
-      // "assets/imgs/characters/2/Dance/1.png"
-    ];
-    this.Eating = [
+    ]);
+    this.Hungry = new Action([
       "assets/imgs/characters/2/Eating/1.png",
       "assets/imgs/characters/2/Eating/2.png",
       "assets/imgs/characters/2/Eating/1.png",
@@ -32,14 +34,7 @@ export class Monster {
       "assets/imgs/characters/2/Eating/2.png",
       "assets/imgs/characters/2/Eating/1.png",
       "assets/imgs/characters/2/Eating/2.png",
-    ];
-
-    this.Looking = [
-      "assets/imgs/characters/2/neutral.png",
-      "assets/imgs/characters/2/neutral.png",
-      "assets/imgs/characters/2/neutral.png",
-      "assets/imgs/characters/2/neutral.png"
-    ];
+    ]);
 
     this.Scores = {
       Hungry: 50,
@@ -50,15 +45,13 @@ export class Monster {
   }
 
   Idle: string[];
-  Smart: string[];
-  Eating: string[];
-  Looking: string[]
+
+  Smart: Action;
+  Hungry: Action;
 
   Scores: {
-    Hungry: number;
     Happy: number;
     Clean: number;
-    Smart: number;
   };
 
   DegradeScores() {

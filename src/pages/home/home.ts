@@ -98,20 +98,20 @@ export class HomePage {
 
   Feed() {
     this.AnimationController.Queue.Push(() => {
-      this.Animate(this.MonsterZone, this.Monster.Eating);
+      this.Animate(this.MonsterZone, this.Monster.Hungry.Animation);
       this.Animate(this.ItemZone, this.Apple, true);
       setTimeout(() => {
-        this.Monster.Scores.Hungry += 40
+        this.Monster.Hungry.Score += 40
       }, 1000);
     });
   }
 
   Read() {
     this.AnimationController.Queue.Push(() => {
-      this.Animate(this.MonsterZone, this.Monster.Smart);
+      this.Animate(this.MonsterZone, this.Monster.Smart.Animation);
       this.Animate(this.ItemZone, this.Book, true);
       setTimeout(() => {
-        this.Monster.Scores.Smart += 40
+        this.Monster.Smart.Score += 40
       }, 1000);
     });
   }
