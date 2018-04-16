@@ -1,13 +1,20 @@
 import { Component } from "@angular/core";
 import { NavController, Platform } from "ionic-angular";
+import { PopoverController } from "ionic-angular";
 
 import { AnimationState, AnimationController } from "./Animations";
 import { Monster } from "../../models/monster";
+import { FoodComponent } from "../../components/food/food";
 
 class Zone {
   Height: number;
   Width: number;
-  Src: string;
+  Src: string = "";
+
+  constructor(h, w){
+    this.Height = h
+    this.Width = w
+  }
 }
 
 @Component({
@@ -15,19 +22,12 @@ class Zone {
   templateUrl: "home.html"
 })
 export class HomePage {
-  MonsterZone: Zone = new Zone();
-  ItemZone: Zone = new Zone();
+  MonsterZone: Zone = new Zone(0,0);
+  ItemZone: Zone = new Zone(60,60);
 
-  Apple = [
+  Food = [
     "assets/imgs/assets/apple/1.png",
-    "assets/imgs/assets/apple/2.png",
-    "assets/imgs/assets/apple/3.png",
-    "assets/imgs/assets/apple/4.png",
-    "assets/imgs/assets/apple/5.png",
-    "assets/imgs/assets/apple/6.png",
-    "assets/imgs/assets/apple/7.png",
-    "assets/imgs/assets/apple/8.png"
-  ];
+  ]
 
   Book = ["assets/imgs/assets/book/1.gif"];
 
@@ -37,13 +37,16 @@ export class HomePage {
 
   TickCounter: number = 0;
 
-  constructor(public navCtrl: NavController, private Plat: Platform) {
+  constructor(
+    public navCtrl: NavController,
+    private Plat: Platform,
+    private popoverCtrl: PopoverController
+  ) {
     Plat.ready().then(readySource => {
-      this.MonsterZone.Width = Plat.width();
-      this.MonsterZone.Height = Plat.height() * 0.57;
+      this.MonsterZone = new Zone(Plat.width(), Plat.height() * 0.57)
     });
 
-    this.ItemZone.Src = "";
+    this.MonsterZone
     this.StartAnimating();
   }
 
@@ -68,11 +71,11 @@ export class HomePage {
           });
         }
       }
-      
+
       this.AnimationController.Queue.Pop().call(this);
     }
 
-    if (this.TickCounter >= 14) {
+    if (this.TickCounter >= 14 * 2) {
       this.Monster.DegradeScores();
       this.TickCounter = 0;
     }
@@ -102,11 +105,32 @@ export class HomePage {
     }, 1500 / arr.length);
   }
 
-  Feed() {
+  ShrinkAnimate(
+    zone: Zone,
+    asset: string,
+    limit: number,
+    idx: number = 0
+  ) {
+    if (limit == idx) {
+        zone.Src = "";
+
+      zone.Height = 60
+      zone.Width = 60
+      return;
+    }
+    zone.Src = asset;
+    zone.Height -= (zone.Height / limit)
+    zone.Width -= (zone.Width / limit)
+    setTimeout(() => {
+      this.ShrinkAnimate(zone, asset, limit, idx + 1);
+    }, 1500 / limit);
+  }
+
+  Feed(Food: string) {
     if (this.Monster.Hungry.TryDo()) {
       this.AnimationController.Queue.Push(() => {
         this.Animate(this.MonsterZone, this.Monster.Hungry.Animation);
-        this.Animate(this.ItemZone, this.Apple, true);
+        this.ShrinkAnimate(this.ItemZone, this.Apple, 10);
       });
     } else {
       this.AnimationController.Queue.Push(() => {
@@ -138,5 +162,17 @@ export class HomePage {
         this.Animate(this.MonsterZone, this.Monster.Bad);
       });
     }
+  }
+
+  PresentPopover(ev: UIEvent) {
+    let popover = this.popoverCtrl.create(FoodComponent, {
+      Food: this.Food,
+      Callback: this.Feed,
+      Context: this
+    });
+
+    popover.present({
+      ev: ev
+    });
   }
 }

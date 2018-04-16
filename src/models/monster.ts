@@ -28,6 +28,15 @@ export class Action {
     }
     return true;
   }
+
+  DegradeScore(){
+    if (this.Score < 1){
+      return
+    }
+
+    this.Score -= 1
+    return this.Score
+  }
 }
 
 export class Monster {
@@ -65,15 +74,13 @@ export class Monster {
       "assets/imgs/characters/2/FlyingAway/1.png"
     ]);
 
-    this.Sick = [
-      "assets/imgs/characters/2/Sick/2.png",
-    ];
+    this.Sick = ["assets/imgs/characters/2/Sick/2.png"];
 
     this.Bad = [
       "assets/imgs/characters/2/UhOh/1.png",
       "assets/imgs/characters/2/UhOh/2.png",
       "assets/imgs/characters/2/UhOh/3.png",
-      "assets/imgs/characters/2/UhOh/2.png",
+      "assets/imgs/characters/2/UhOh/2.png"
     ];
   }
 
@@ -89,12 +96,14 @@ export class Monster {
 
   DegradeScores() {
     var scores = [
-    this.Hungry.Score -= 1,
-    this.Active.Score -= 1,
-    this.Smart.Score -= 1,
+    this.Hungry.DegradeScore(),
+    this.Active.DegradeScore(),
+    this.Smart.DegradeScore(),
     ];
 
-    this.Happiness = scores.reduce((total, num) => {return total + num}) / scores.length
-      
+    this.Happiness =
+      scores.reduce((total, num) => {
+        return total + num;
+      }) / scores.length;
   }
 }

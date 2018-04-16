@@ -44,7 +44,21 @@
       </ion-row>
   </ion-grid>
   
-  <img *ngIf="ItemZone.Src != ''" width=60 height=60 [src]="ItemZone.Src" >
+
+  <ion-grid width=60 height=60>
+    <ion-row>
+    </ion-row>
+    <ion-row>
+      <ion-col >
+        <img width={{ItemZone.Width}} height={{ItemZone.Height}}  *ngIf="ItemZone.Src != ''" [src]="ItemZone.Src" >
+      </ion-col>
+    </ion-row>
+    <ion-row>
+    </ion-row>
+  </ion-grid>
+  <!-- <div >
+
+  </div> -->
 
 </ion-content>
 <ion-footer>
@@ -52,7 +66,7 @@
   <ion-grid no-padding>
     <ion-row>
       <ion-col no-padding>
-        <button ion-button block outline (click)="Feed()">Feed</button>
+        <button ion-button block outline (click)="PresentPopover($event)">Feed</button>
       </ion-col>
       <ion-col no-padding>
         <button ion-button block outline (click)="Read()">Read</button>

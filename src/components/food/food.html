@@ -1,0 +1,16 @@
+<ion-grid>
+	<ion-row>
+		<ion-col *ngFor="let food of Foods; let i = index">
+			<img [src]="food" (click)="Return(i)">
+		</ion-col>
+<!-- 		<ion-col>
+			Happy
+		</ion-col>
+		<ion-col>
+			Smart
+		</ion-col>
+		<ion-col>
+			Active
+		</ion-col> -->
+	</ion-row>
+</ion-grid>
