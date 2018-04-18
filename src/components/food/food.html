@@ -1,8 +1,6 @@
-<ion-grid>
-	<ion-row>
-		<ion-col *ngFor="let food of Foods; let i = index">
-			<img [src]="food" (click)="Return(i)">
-		</ion-col>
+<!-- <ion-grid>
+	<ion-row> -->
+		
 <!-- 		<ion-col>
 			Happy
 		</ion-col>
@@ -12,5 +10,12 @@
 		<ion-col>
 			Active
 		</ion-col> -->
-	</ion-row>
-</ion-grid>
+<!-- 	</ion-row>
+</ion-grid> -->
+<!-- <ion-content height=45> -->
+	<div class="container">
+		<div  *ngFor="let food of Foods; let i = index">
+			<img width=40 height=40 [src]="food.Asset" (click)="Return(i)">
+		</div>
+	</div>
+<!-- </ion-content> -->

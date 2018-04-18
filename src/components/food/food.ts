@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
+
+import { Food } from "../../models/models";
 
 @Component({
   selector: 'food',
@@ -7,14 +9,16 @@ import { NavParams } from 'ionic-angular';
 })
 export class FoodComponent {
 
-  Food: string[]
+  Foods: Array<Food>
   Callback
   SentContext
 
   constructor(
   	public navParams: NavParams,
+    public viewCtrl: ViewController,
   	) {
-  	this.Food = this.navParams.get("Food");
+    // debugger;
+  	this.Foods = this.navParams.get("Foods");
   	console.log(this.navParams)
   	this.Callback = this.navParams.get("Callback");
   	this.SentContext = this.navParams.get("Context");
@@ -24,10 +28,17 @@ export class FoodComponent {
     // if (this.navParams.data) {
       
     // }
+
+      // debugger;
+      // this.Food = this.navParams.get("Food");
+      // console.log(this.navParams)
+      // this.Callback = this.navParams.get("Callback");
+      // this.SentContext = this.navParams.get("Context");
   }
 
-  ChangeGroup(idx: number){
-    this.Callback.call(this.SentContext, this.Food[idx])
+  Return(idx) {
+    this.Callback.call(this.SentContext, this.Foods[idx])
+    this.viewCtrl.dismiss();
   }
 
 }
