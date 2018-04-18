@@ -45,7 +45,7 @@
   </ion-grid>
   
 
-  <ion-grid width=60 height=60>
+  <ion-grid >
     <ion-row>
     </ion-row>
     <ion-row>
@@ -56,9 +56,10 @@
     <ion-row>
     </ion-row>
   </ion-grid>
-  <!-- <div >
-
-  </div> -->
+  
+  <div text-center *ngIf="MessageState == 1">
+    <p>{{Message}}</p>
+  </div>
 
 </ion-content>
 <ion-footer>

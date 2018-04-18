@@ -17,6 +17,11 @@ class Zone {
   }
 }
 
+enum MessageState {
+  None = 0,
+  Showing
+}
+
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
@@ -34,6 +39,9 @@ export class HomePage {
   AnimationController: AnimationController = new AnimationController();
 
   TickCounter: number = 0;
+
+  Message: string;
+  MessageState: MessageState = 0;
 
   constructor(
     public navCtrl: NavController,
@@ -87,9 +95,10 @@ export class HomePage {
       this.AnimationController.State = AnimationState.Animating;
 
       if (this.AnimationController.Queue.Length() == 0) {
-        if (this.Monster.Happiness < 10) {
+        if (this.Monster.Happiness < 10) { //sick
           this.AnimationController.Queue.Push(() => {
             this.Animate(this.MonsterZone, this.Monster.Sick);
+            this.PostMessage("Monster is not feeling good!")
           });
         } else {
           this.AnimationController.Queue.Push(() => {
@@ -131,31 +140,50 @@ export class HomePage {
     }, 1500 / arr.length);
   }
 
-  ShrinkAnimate(zone: Zone, asset: string, limit: number, idx: number = 0) {
+  ShrinkAnimate(zone: Zone, asset: string, limit: number, callback: () => void, idx: number = 0) {
     if (limit == idx) {
       zone.Src = "";
 
       zone.Height = 60;
       zone.Width = 60;
+      callback.call(this)
       return;
     }
     zone.Src = asset;
     zone.Height -= zone.Height / limit;
     zone.Width -= zone.Width / limit;
     setTimeout(() => {
-      this.ShrinkAnimate(zone, asset, limit, idx + 1);
+      this.ShrinkAnimate(zone, asset, limit, callback, idx + 1);
     }, 1500 / limit);
+  }
+
+  PostMessage(Message: string) {
+    this.Message = Message
+    this.MessageState = MessageState.Showing
+    setTimeout(() => {
+      //if the message hasn't been replaced by something else in the mean time
+      if (this.Message == Message){
+        this.Message = ""
+        this.MessageState = MessageState.None
+      }
+    }, 5000);
   }
 
   Feed(Food: Food) {
     if (this.Monster.Hungry.TryDo()) {
       this.AnimationController.Queue.Push(() => {
         this.Animate(this.MonsterZone, this.Monster.Hungry.Animation);
-        this.ShrinkAnimate(this.ItemZone, Food.Asset, 10);
+        this.MessageState = MessageState.None
+        this.ShrinkAnimate(this.ItemZone, Food.Asset, 10, () => {
+          let len = Food.Message.length
+          let pick = Math.floor((Math.random() * len))
+          this.PostMessage(Food.Message[pick])
+        });
       });
     } else {
       this.AnimationController.Queue.Push(() => {
         this.Animate(this.MonsterZone, this.Monster.Bad);
+        this.PostMessage("Monster is Full!")
       });
     }
   }
@@ -169,6 +197,7 @@ export class HomePage {
     } else {
       this.AnimationController.Queue.Push(() => {
         this.Animate(this.MonsterZone, this.Monster.Bad);
+        this.PostMessage("Monster doesn't want to read now!")
       });
     }
   }
@@ -181,6 +210,7 @@ export class HomePage {
     } else {
       this.AnimationController.Queue.Push(() => {
         this.Animate(this.MonsterZone, this.Monster.Bad);
+        this.PostMessage("Monster is tired!")
       });
     }
   }
