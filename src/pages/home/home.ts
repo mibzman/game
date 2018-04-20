@@ -80,8 +80,9 @@ export class HomePage {
       ]),
     ];
 
-    this.MonsterZone;
+    
     this.StartAnimating();
+    this.MonsterZone.Src = this.Monster.Default;
   }
 
   StartAnimating() {
@@ -91,6 +92,7 @@ export class HomePage {
   }
 
   Tick() {
+    // debugger;
     if (this.AnimationController.State == AnimationState.Ready) {
       this.AnimationController.State = AnimationState.Animating;
 

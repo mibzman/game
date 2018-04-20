@@ -82,7 +82,12 @@ export class Monster {
       "assets/imgs/characters/2/UhOh/3.png",
       "assets/imgs/characters/2/UhOh/2.png"
     ];
+
+    this.Default = "assets/imgs/characters/2/Idle/1.png"
+
   }
+
+  Default: string;
 
   Idle: string[];
   Bad: string[];

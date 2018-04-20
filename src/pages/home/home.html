@@ -57,13 +57,13 @@
     </ion-row>
   </ion-grid>
   
-  <div text-center *ngIf="MessageState == 1">
+  <!-- <div text-center *ngIf="MessageState == 1">
     <p>{{Message}}</p>
-  </div>
+  </div> -->
 
 </ion-content>
 <ion-footer>
-	<img width={{MonsterZone.Width}} height={{MonsterZone.Height}} [src]="MonsterZone.Src" (click)="Jump()">
+	<img *ngIf="MonsterZone.Src != ''" width={{MonsterZone.Width}} height={{MonsterZone.Height}} [src]="MonsterZone.Src" (click)="Jump()">
   <ion-grid no-padding>
     <ion-row>
       <ion-col no-padding>
