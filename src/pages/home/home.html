@@ -25,41 +25,33 @@
   			Active
   		</ion-col>
   	</ion-row>
-      <ion-row>
-        <ion-col no-padding>
-          <bar [progress]=Monster.Hungry.Score></bar>
-        </ion-col>
-        <ion-col no-padding>
-          <bar [progress]=Monster.Happiness></bar>
-        </ion-col>
-        <!-- <ion-col no-padding>
-          <bar [progress]=Monster.Scores.Clean></bar>
-        </ion-col> -->
-        <ion-col no-padding>
-          <bar [progress]=Monster.Smart.Score></bar>
-        </ion-col>
-        <ion-col no-padding>
-          <bar [progress]=Monster.Active.Score></bar>
-        </ion-col>
-      </ion-row>
-  </ion-grid>
-  
-
-  <ion-grid >
     <ion-row>
-    </ion-row>
-    <ion-row>
-      <ion-col >
-        <img width={{ItemZone.Width}} height={{ItemZone.Height}}  *ngIf="ItemZone.Src != ''" [src]="ItemZone.Src" >
+      <ion-col no-padding>
+        <bar [progress]=Monster.Hungry.Score></bar>
+      </ion-col>
+      <ion-col no-padding>
+        <bar [progress]=Monster.Happiness></bar>
+      </ion-col>
+      <!-- <ion-col no-padding>
+        <bar [progress]=Monster.Scores.Clean></bar>
+      </ion-col> -->
+      <ion-col no-padding>
+        <bar [progress]=Monster.Smart.Score></bar>
+      </ion-col>
+      <ion-col no-padding>
+        <bar [progress]=Monster.Active.Score></bar>
       </ion-col>
     </ion-row>
     <ion-row>
+      <ion-col col-2>
+        <img width={{ItemZone.Width}} height={{ItemZone.Height}}  *ngIf="ItemZone.Src != ''" [src]="ItemZone.Src" >
+      </ion-col>
+      <ion-col *ngIf="MessageState == 1">
+        <p>{{Message}}</p>
+      </ion-col>
     </ion-row>
   </ion-grid>
   
-  <!-- <div text-center *ngIf="MessageState == 1">
-    <p>{{Message}}</p>
-  </div> -->
 
 </ion-content>
 <ion-footer>
